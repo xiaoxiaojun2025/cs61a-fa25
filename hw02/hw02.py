@@ -36,6 +36,11 @@ def product(n, term):
     162
     """
     "*** YOUR CODE HERE ***"
+    k,res=1,1
+    while(k<=n):
+        res,k=res*term(k),k+1
+    return res
+
 
 
 def accumulate(fuse, start, n, term):
@@ -58,6 +63,10 @@ def accumulate(fuse, start, n, term):
     19
     """
     "*** YOUR CODE HERE ***"
+    res,k=start,1
+    while(k<=n):
+        res,k=fuse(res,term(k)),k+1
+    return res
 
 
 def summation_using_accumulate(n, term):
@@ -72,7 +81,7 @@ def summation_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(summation_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return accumulate(add,0,n,term)
 
 
 def product_using_accumulate(n, term):
@@ -87,7 +96,7 @@ def product_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(product_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return accumulate(mul,1,n,term)
 
 
 def make_repeater(f, n):
@@ -104,4 +113,11 @@ def make_repeater(f, n):
     390625
     """
     "*** YOUR CODE HERE ***"
-
+#这个题目很好，即在主函数内部编写一个计算函数，主函数返回计算函数本身
+    def res(x):
+        k=1
+        ans=x
+        while(k<=n):
+            ans,k=f(ans),k+1
+        return ans
+    return res
