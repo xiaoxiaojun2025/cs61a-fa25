@@ -87,12 +87,6 @@ def multiple(a, b):
     while (k1 * a) % b != 0:
         k1 += 1
     return k1 * a
-
-
-
-
-
-
 def cycle(f1, f2, f3):
     """Returns a function that is itself a higher-order function.
 
